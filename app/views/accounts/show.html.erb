@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @account.nome %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @account.telefone %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= @account.cpf %>
+</p>
+
+<p>
+  <strong>Saldo:</strong>
+  <%= @account.saldo %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @account.status %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @saque.valor %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @saque.account_id %>
+</p>
+
+<%= link_to 'Edit', edit_saque_path(@saque) %> |
+<%= link_to 'Back', saques_path %>

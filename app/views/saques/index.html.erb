@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Saques</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Account</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @saques.each do |saque| %>
+      <tr>
+        <td><%= saque.valor %></td>
+        <td><%= saque.account_id %></td>
+        <td><%= link_to 'Show', saque %></td>
+        <td><%= link_to 'Edit', edit_saque_path(saque) %></td>
+        <td><%= link_to 'Destroy', saque, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Saque', new_saque_path %>
