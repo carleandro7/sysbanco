@@ -21,7 +21,7 @@ class SaquesController < ApplicationController
   # POST /saques.json
   def create
     @saque = Saque.new(saque_params)
-
+    @saque.account_id = current_account.id
     respond_to do |format|
       if @saque.save
         format.html { redirect_to @saque, notice: 'Saque was successfully created.' }
