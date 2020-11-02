@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_account!, except: [:new, :create, :menu]
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -24,6 +25,7 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
+    redirecionar_usuario_logado
     @account = Account.new(account_params)
 
     respond_to do |format|
