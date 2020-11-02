@@ -19,6 +19,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
+    redirecionar_usuario_logado
     @account = Account.new
   end
 
@@ -35,7 +36,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to action: "index", notice: 'Account was successfully created.' }
+        format.html { redirect_to action: "menu", notice: 'Account was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -48,8 +49,8 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @account }
+        format.html { redirect_to action: "index", notice: 'Account was successfully updated.' }
+       
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }

@@ -11,6 +11,11 @@ class DepositosController < ApplicationController
   # GET /depositos/1
   # GET /depositos/1.json
   def show
+    if session[:deposito_show_id].to_s != ""
+      @deposito = Deposito.find(session[:deposito_show_id])
+    else
+      redirect_to menu_accounts_path
+    end
   end
 
   # GET /depositos/new
@@ -25,8 +30,8 @@ class DepositosController < ApplicationController
 
     respond_to do |format|
       if @deposito.save
-        format.html { redirect_to @deposito, notice: 'Deposito was successfully created.' }
-        format.json { render :show, status: :created, location: @deposito }
+        session[:deposito_show_id] = @deposito.id
+        format.html { redirect_to @deposito, notice: 'Saque was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @deposito.errors, status: :unprocessable_entity }
