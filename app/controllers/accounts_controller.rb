@@ -12,6 +12,17 @@ class AccountsController < ApplicationController
     redirecionar_usuario_logado
   end
 
+  def extratoconta
+    if params[:datainicial] != nil and params[:datafinal] != nil and params[:datainicial] != "" and params[:datafinal] != ""
+      @datainicial=DateTime.parse(params[:datainicial].to_s).strftime("%Y-%m-%d")
+      @datafinal=DateTime.parse(params[:datafinal].to_s).strftime("%Y-%m-%d")
+    else
+        @datainicial = (DateTime.now - 7.days).strftime("%Y-%m-%d")
+        @datafinal = (DateTime.now).strftime("%Y-%m-%d")
+    end
+    @extrato_list = extrato_data(@datainicial, @datafinal)
+  end
+
   def encerrarconta
     @account = Account.find(current_account.id)
     @account.update_columns({:status => "Desativada"})

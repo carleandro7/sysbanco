@@ -15,7 +15,33 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    private 
+    def extrato_data(datainicial, datafinal)
+        account_id = current_account.id
+        datafinal = (DateTime.parse(datafinal)+1.days).strftime("%Y-%m-%d")
+        saques = Saque.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
+        depositos = Deposito.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
+        transferaccounts = Transferaccount.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
+        ordenar(saques, depositos, transferaccounts,account_id)
+    end
+
+    
+  
+    private
+      
+    def ordenar(saques, depositos, transferaccounts, account_id)
+        list = Array.new
+        saques.each do |saque|
+            list.push({"id"=> saque.id, "valor"=> saque.valor, "data"=>saque.created_at, "mensagem"=> "Saque"})
+        end
+        depositos.each do |deposito|
+          list.push({"id"=> deposito.id,"valor"=> deposito.valor, "data"=>deposito.created_at, "mensagem"=> "Depósito"})
+        end
+        transferaccounts.each do |transferaccount|
+            list.push({"id"=> transferaccount.transfer.id, "valor"=> transferaccount.transfer.valor, "data"=>transferaccount.transfer.created_at, "mensagem"=> transferaccount.operacao})
+        end
+        list = list.sort_by { |k| k["data"] }
+    end
+
     def after_sign_out_path_for(resource_or_scope)
         menu_accounts_path
      end

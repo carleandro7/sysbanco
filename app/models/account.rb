@@ -16,5 +16,12 @@ class Account < ApplicationRecord
     self.saldo = saldo.presence || "R$ 10.000,00"
   end
 
+  def veririficar_saldo_suficiente(valor)
+    if self.saldo >= valor
+      return true
+    end
+    return false
+  end
+
   
 end

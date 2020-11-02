@@ -11,4 +11,9 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  def deposita_conta(account)
+    account.saldo= account.saldo + self.valor
+    account.update_columns({:saldo => account.saldo})
+  end
+
 end
