@@ -1,0 +1,23 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light  nav_menu_principal" >
+<a href="<%= root_url %>" class="link">
+  <div class="navbar-brand" ><strong><h1>Teste Nobe</h1></strong></div>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+  <ul class="navbar-nav mr-auto" style="margin-left: 20%;">
+  <li><h5><b>Saldo em Conta <%= current_account.saldo.to_money('BRL').format%></b></h5></li>
+  </ul>
+  
+    <div class="my-2 my-lg-0" style="margin-right: 20px" >
+      <span class="navbar-text"><strong> <%= current_account.nome.upcase  %></strong></span>
+      </div>
+      <div class="my-2 my-lg-0" >
+          <%= button_to "SAIR", destroy_account_session_path,:class => "btn btn-primary my-2 my-sm-0", :method => :delete %>
+    </div>
+  </div>
+</nav>
