@@ -12,6 +12,13 @@ class AccountsController < ApplicationController
     redirecionar_usuario_logado
   end
 
+  def encerrarconta
+    @account = Account.find(current_account.id)
+    @account.update_columns({:status => "Desativada"})
+    sign_out
+    redirect_to menu_accounts_path 
+  end
+
   # GET /accounts/1
   # GET /accounts/1.json
   def show
