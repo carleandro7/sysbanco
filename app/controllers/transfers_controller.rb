@@ -1,5 +1,5 @@
 class TransfersController < ApplicationController
-  before_action :set_transfer, only: [:show, :edit, :update, :destroy]
+  before_action :set_transfer, only: [:show]
 
   # GET /transfers
   # GET /transfers.json
@@ -15,10 +15,6 @@ class TransfersController < ApplicationController
   # GET /transfers/new
   def new
     @transfer = Transfer.new
-  end
-
-  # GET /transfers/1/edit
-  def edit
   end
 
   # POST /transfers
@@ -37,29 +33,6 @@ class TransfersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /transfers/1
-  # PATCH/PUT /transfers/1.json
-  def update
-    respond_to do |format|
-      if @transfer.update(transfer_params)
-        format.html { redirect_to @transfer, notice: 'Transfer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transfer }
-      else
-        format.html { render :edit }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /transfers/1
-  # DELETE /transfers/1.json
-  def destroy
-    @transfer.destroy
-    respond_to do |format|
-      format.html { redirect_to transfers_url, notice: 'Transfer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

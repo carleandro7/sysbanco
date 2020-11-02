@@ -1,5 +1,5 @@
 class DepositosController < ApplicationController
-  before_action :set_deposito, only: [:show, :edit, :update, :destroy]
+  before_action :set_deposito, only: [:show]
 
   # GET /depositos
   # GET /depositos.json
@@ -17,10 +17,6 @@ class DepositosController < ApplicationController
     @deposito = Deposito.new
   end
 
-  # GET /depositos/1/edit
-  def edit
-  end
-
   # POST /depositos
   # POST /depositos.json
   def create
@@ -34,30 +30,6 @@ class DepositosController < ApplicationController
         format.html { render :new }
         format.json { render json: @deposito.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /depositos/1
-  # PATCH/PUT /depositos/1.json
-  def update
-    respond_to do |format|
-      if @deposito.update(deposito_params)
-        format.html { redirect_to @deposito, notice: 'Deposito was successfully updated.' }
-        format.json { render :show, status: :ok, location: @deposito }
-      else
-        format.html { render :edit }
-        format.json { render json: @deposito.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /depositos/1
-  # DELETE /depositos/1.json
-  def destroy
-    @deposito.destroy
-    respond_to do |format|
-      format.html { redirect_to depositos_url, notice: 'Deposito was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

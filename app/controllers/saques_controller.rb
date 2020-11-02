@@ -1,5 +1,5 @@
 class SaquesController < ApplicationController
-  before_action :set_saque, only: [:show, :edit, :update, :destroy]
+  before_action :set_saque, only: [:show]
 
   # GET /saques
   # GET /saques.json
@@ -15,10 +15,6 @@ class SaquesController < ApplicationController
   # GET /saques/new
   def new
     @saque = Saque.new
-  end
-
-  # GET /saques/1/edit
-  def edit
   end
 
   # POST /saques
@@ -37,29 +33,6 @@ class SaquesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /saques/1
-  # PATCH/PUT /saques/1.json
-  def update
-    respond_to do |format|
-      if @saque.update(saque_params)
-        format.html { redirect_to @saque, notice: 'Saque was successfully updated.' }
-        format.json { render :show, status: :ok, location: @saque }
-      else
-        format.html { render :edit }
-        format.json { render json: @saque.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /saques/1
-  # DELETE /saques/1.json
-  def destroy
-    @saque.destroy
-    respond_to do |format|
-      format.html { redirect_to saques_url, notice: 'Saque was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
