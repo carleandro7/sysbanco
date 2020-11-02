@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :accounts, :path => "accounts" do
     collection do
       get "/menu"  => "accounts#menu", :as => "menu" 
-      #get "/encerrarconta"  => "accounts#encerrarconta", :as => "encerrarconta" 
-      #get "/extratoconta"  => "accounts#extratoconta", :as => "extratoconta" 
+      get "/encerrarconta"  => "accounts#encerrarconta", :as => "encerrarconta" 
+      get "/extratoconta"  => "accounts#extratoconta", :as => "extratoconta" 
     end
   end
   root "accounts#menu"

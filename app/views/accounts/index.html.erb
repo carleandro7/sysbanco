@@ -1,35 +1,51 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Accounts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Telefone</th>
-      <th>Cpf</th>
-      <th>Saldo</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.nome %></td>
-        <td><%= account.telefone %></td>
-        <td><%= account.cpf %></td>
-        <td><%= account.saldo %></td>
-        <td><%= account.status %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row justify-content-center car_principal" >
+<div class="col-lg-2  col-md-4 col-sm-8 car_principal">
+    <a href="<%= extratoconta_accounts_path %>">
+  <div class="card ">
+  <%=image_tag("extrato2.png", class: "card-img-top", alt: "Card image cap")%>
+    <div class="card-body">
+      <h5 class="card-title"><strong>EXTRATO</strong></h5>
+    </div>
+  </div>
+  </a>
+  </div>
+    <div class="col-lg-2  col-md-4 col-sm-8 car_principal">
+    <a href="<%= new_saque_url %>">
+   <div class="card ">
+    <%=image_tag("saque.png", class: "card-img-top", alt: "Card image cap")%>
+    <div class="card-body">
+      <h5 class="card-title" ><strong>SAQUE</strong></h5>
+    </div>
+  </div>
+    </a>
+      </div>
 
-<br>
+    <div class="col-lg-2  col-md-4 col-sm-8 car_principal">
+    <a href="<%= new_transfer_url %>">
+  <div class="card">
+    <%=image_tag("transfer2.png", class: "card-img-top", alt: "Card image cap")%>
+    <div class="card-body">
+      <h5 class="card-title"><strong>TRANSFERÊNCIA</strong></h5>
+    </div>
+  </div>
+  </a>
+</div>
 
-<%= link_to 'New Account', new_account_path %>
+<div class="col-lg-2  col-md-4 col-sm-8 car_principal">
+    <a href="<%= edit_account_url(current_account) %>">
+  <div class="card">
+    <%=image_tag("alteraconta.png", class: "card-img-top", alt: "Card image cap")%>
+    <div class="card-body">
+      <h5 class="card-title"><strong>ALTERAR DADOS</strong></h5>
+    </div>
+  </div>
+  </a>
+</div>
+
+</div>
+
+
+
