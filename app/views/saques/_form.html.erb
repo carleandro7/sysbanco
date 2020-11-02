@@ -1,7 +1,7 @@
 <%= form_with(model: saque, local: true) do |form| %>
   <% if saque.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(saque.errors.count, "error") %> prohibited this saque from being saved:</h2>
+      <h2><%= pluralize(saque.errors.count, "error") %></h2>
 
       <ul>
         <% saque.errors.full_messages.each do |message| %>
@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :valor %>
-    <%= form.text_field :valor %>
+  <div class="row">
+      <div class="col-lg-10 form-group">   
+          <%= form.label :valor,"Valor", :class => 'control-label' %>
+          <%= form.text_field :valor, :class => 'form-control dinheiro', id: :valo_saque %>
+      </div>
   </div>
+  
+  <div class="form-group" >
+      <div class="col-sm-12 controls">
+          <%= form.submit "Efetivar", class: "btn btn-success" %>
+      </div>                         
+ </div>
 
-  <div class="field">
-    <%= form.label :account_id %>
-    <%= form.text_field :account_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+
+
