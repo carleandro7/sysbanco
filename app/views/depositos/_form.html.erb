@@ -1,7 +1,7 @@
 <%= form_with(model: deposito, local: true) do |form| %>
   <% if deposito.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(deposito.errors.count, "error") %> prohibited this deposito from being saved:</h2>
+      <h2><%= pluralize(deposito.errors.count, "error") %></h2>
 
       <ul>
         <% deposito.errors.full_messages.each do |message| %>
@@ -10,18 +10,26 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :valor %>
-    <%= form.text_field :valor %>
+  <div class="row">
+      <div class="col-lg-10 form-group">   
+          <%= form.label :account_id,"Favorecido", :class => 'control-label' %>  
+          <%= form.collection_select :account_id, listaAccount, :id, :nome, {:prompt => false}, :class => 'form-control ' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :account_id %>
-    <%= form.text_field :account_id %>
+  <div class="row">
+      <div class="col-lg-10 form-group">   
+          <%= form.label :valor,"Valor", :class => 'control-label' %>
+          <%= form.text_field :valor, :class => 'form-control dinheiro', id: :valo_saque %>
+      </div>
   </div>
+  
+  
+  <div class="form-group" >
+      <div class="col-sm-12 controls">
+          <%= form.submit "Enviar", class: "btn btn-success" %>
+      </div>                         
+ </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+
+
