@@ -8,6 +8,10 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
+  def menu
+    redirecionar_usuario_logado
+  end
+
   # GET /accounts/1
   # GET /accounts/1.json
   def show
