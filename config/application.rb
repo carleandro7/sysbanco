@@ -29,6 +29,11 @@ module Sysbanco
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.i18n.default_locale = :"pt-BR"
+	  I18n.enforce_available_locales = false
+    config.time_zone = 'Brasilia'
+    I18n.default_locale = :pt
+    
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|
