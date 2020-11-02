@@ -1,4 +1,5 @@
 class SaquesController < ApplicationController
+  before_action :authenticate_account!, except: [:new,:show, :create]
   before_action :set_saque, only: [:show]
 
   # GET /saques

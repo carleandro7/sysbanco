@@ -1,4 +1,5 @@
 class DepositosController < ApplicationController
+  before_action :authenticate_account!, except: [:new,:show, :create]
   before_action :set_deposito, only: [:show]
 
   # GET /depositos
