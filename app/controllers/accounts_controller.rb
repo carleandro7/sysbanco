@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
+    verificar_account_login(@account)
   end
 
   # POST /accounts
