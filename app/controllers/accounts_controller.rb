@@ -35,8 +35,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render :show, status: :created, location: @account }
+        format.html { redirect_to action: "index", notice: 'Account was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -67,6 +66,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.require(:account).permit(:nome, :telefone, :cpf, :saldo, :status)
+      params.require(:account).permit(:nome, :telefone, :cpf, :saldo, :status, :email, :password)
     end
 end
