@@ -24,18 +24,20 @@ class TransfersController < ApplicationController
   # POST /transfers
   # POST /transfers.json
   def create
-    @transfer = Transfer.new(transfer_params)
-    @transfer = Transfer.new(transfer_params)
-    @transferaccount = @transfer.transferaccounts.build
-    @transferaccount.account_id = current_account.id
-    
-    respond_to do |format|
-      if @transfer.save
-        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
-        format.json { render :show, status: :created, location: @transfer }
-      else
-        format.html { render :new }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      @transfer = Transfer.new(transfer_params)
+      @transfer = Transfer.new(transfer_params)
+      @transferaccount = @transfer.transferaccounts.build
+      @transferaccount.account_id = current_account.id
+      
+      respond_to do |format|
+        if @transfer.save
+          format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
+          format.json { render :show, status: :created, location: @transfer }
+        else
+          format.html { render :new }
+          format.json { render json: @transfer.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

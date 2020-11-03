@@ -26,15 +26,17 @@ class DepositosController < ApplicationController
   # POST /depositos
   # POST /depositos.json
   def create
-    @deposito = Deposito.new(deposito_params)
+    ActiveRecord::Base.transaction do
+      @deposito = Deposito.new(deposito_params)
 
-    respond_to do |format|
-      if @deposito.save
-        session[:deposito_show_id] = @deposito.id
-        format.html { redirect_to @deposito, notice: 'Saque was successfully created.' }
-      else
-        format.html { render :new }
-        format.json { render json: @deposito.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @deposito.save
+          session[:deposito_show_id] = @deposito.id
+          format.html { redirect_to @deposito, notice: 'Saque was successfully created.' }
+        else
+          format.html { render :new }
+          format.json { render json: @deposito.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

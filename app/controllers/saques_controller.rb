@@ -23,15 +23,17 @@ class SaquesController < ApplicationController
   # POST /saques
   # POST /saques.json
   def create
-    @saque = Saque.new(saque_params)
-    @saque.account_id = current_account.id
-    respond_to do |format|
-      if @saque.save
-        format.html { redirect_to @saque, notice: 'Saque was successfully created.' }
-        format.json { render :show, status: :created, location: @saque }
-      else
-        format.html { render :new }
-        format.json { render json: @saque.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      @saque = Saque.new(saque_params)
+      @saque.account_id = current_account.id
+      respond_to do |format|
+        if @saque.save
+          format.html { redirect_to @saque, notice: 'Saque was successfully created.' }
+          format.json { render :show, status: :created, location: @saque }
+        else
+          format.html { render :new }
+          format.json { render json: @saque.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

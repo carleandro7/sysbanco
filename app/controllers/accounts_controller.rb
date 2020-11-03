@@ -24,10 +24,12 @@ class AccountsController < ApplicationController
   end
 
   def encerrarconta
-    @account = Account.find(current_account.id)
-    @account.update_columns({:status => "Desativada"})
-    sign_out
-    redirect_to menu_accounts_path 
+    ActiveRecord::Base.transaction do
+      @account = Account.find(current_account.id)
+      @account.update_columns({:status => "Desativada"})
+      sign_out
+      redirect_to menu_accounts_path 
+    end
   end
 
   # GET /accounts/1
@@ -49,15 +51,17 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    redirecionar_usuario_logado
-    @account = Account.new(account_params)
+    ActiveRecord::Base.transaction do
+      redirecionar_usuario_logado
+      @account = Account.new(account_params)
 
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to action: "menu", notice: 'Account was successfully created.' }
-      else
-        format.html { render :new }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @account.save
+          format.html { redirect_to action: "menu", notice: 'Account was successfully created.' }
+        else
+          format.html { render :new }
+          format.json { render json: @account.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
