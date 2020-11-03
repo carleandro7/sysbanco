@@ -1,7 +1,7 @@
 <%= form_with(model: transfer, local: true) do |form| %>
   <% if transfer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(transfer.errors.count, "error") %> prohibited this transfer from being saved:</h2>
+      <h2><%= pluralize(transfer.errors.count, "error(s)") %></h2>
 
       <ul>
         <% transfer.errors.full_messages.each do |message| %>
@@ -11,17 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :valor %>
-    <%= form.text_field :valor %>
-  </div>
+  <div id="transfer">
+      <%= form.fields_for :transferaccounts do |transfer| %>
+        <%= render 'transfer_fields', f: transfer %>
+      <%end%>
+    </div>
 
-  <div class="field">
-    <%= form.label :taxa %>
-    <%= form.text_field :taxa %>
+  <div class="row">
+      <div class="col-lg-7 form-group">   
+          <%= form.label :valor,"Valor", :class => 'control-label' %>
+          <%= form.text_field :valor, :class => 'form-control dinheiro', id: :valo_saque %>
+      </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
+  <div class="form-group" >
+      <div class="col-sm-12 controls">
+          <%= form.submit "Transferir", class: "btn btn-success" %>
+      </div>                         
+ </div>
 <% end %>
+
+
+
+
+
