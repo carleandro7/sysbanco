@@ -10,6 +10,9 @@ class SaquesController < ApplicationController
   # GET /saques/1
   # GET /saques/1.json
   def show
+    if @saque.account_id != current_account.id
+      redirecionar_usuario_logado
+    end
   end
 
   # GET /saques/new

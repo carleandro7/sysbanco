@@ -10,6 +10,9 @@ class TransfersController < ApplicationController
   # GET /transfers/1
   # GET /transfers/1.json
   def show
+    if @transfer.transferaccounts[1].account_id != current_account.id
+      redirecionar_usuario_logado
+    end
   end
 
   # GET /transfers/new
