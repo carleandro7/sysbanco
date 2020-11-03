@@ -30,7 +30,18 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      # Escolha um framework de teste:
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 
   #FactoryBot
   config.include FactoryBot::Syntax::Methods  

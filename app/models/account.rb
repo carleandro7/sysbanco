@@ -13,7 +13,7 @@ class Account < ApplicationRecord
   #definir valores padrao antes de salvar  
   def default_values
     self.status = status.presence || 'Ativo'
-    self.saldo = saldo.presence || "R$ 10.000,00"
+    self.saldo = saldo.presence || "0"
   end
 
   def veririficar_saldo_suficiente(valor)
