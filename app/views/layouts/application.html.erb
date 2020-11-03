@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SysBanco</title>
+    <title>Projeto7</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,14 +13,8 @@
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+  
+
    </head>
 
   <body>
@@ -54,12 +48,22 @@ Exemplo CPF '###.###.###.##' [789.456.123.10]
   
   </body>
 
+
 <script>
-$(document).ready(function($){
-    $(".dinheiro").maskMoney();
+  $(document).on('keydown', 'input[pattern]', function(e){
+  var input = $(this);
+  var oldVal = input.val();
+  var regex = new RegExp(input.attr('pattern'), 'g');
+  
+  setTimeout(function(){
+    var newVal = input.val();
+    if(!regex.test(newVal)){
+      input.val(oldVal); 
+    }
+  }, 0);
 });
 
 
-</script>
+  </script>
 
 </html>

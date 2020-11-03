@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_212757) do
 
   create_table "depositos", force: :cascade do |t|
     t.decimal "valor", precision: 8, scale: 2
+    t.date "datacadastro"
     t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_212757) do
 
   create_table "saques", force: :cascade do |t|
     t.decimal "valor", precision: 8, scale: 2
+    t.datetime "datacadastro"
     t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_212757) do
   create_table "transfers", force: :cascade do |t|
     t.decimal "valor", precision: 8, scale: 2
     t.decimal "taxa", precision: 8, scale: 2
+    t.datetime "datacadastro"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

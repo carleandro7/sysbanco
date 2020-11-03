@@ -17,9 +17,10 @@ class ApplicationController < ActionController::Base
 
     def extrato_data(datainicial, datafinal)
         account_id = current_account.id
-        datafinal = (DateTime.parse(datafinal)+1.days).strftime("%Y-%m-%d")
+        datainicial = (DateTime.parse(datainicial)).strftime("%Y-%m-%d 00:00:00")
+        datafinal = (DateTime.parse(datafinal)+1.days).strftime("%Y-%m-%d 23:59:59.999999")
         saques = Saque.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
-        depositos = Deposito.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
+        depositos = Deposito.where('account_id = ? AND  created_at > ? AND created_at < ?',account_id, datainicial, datafinal)
         transferaccounts = Transferaccount.where('account_id = ? AND  created_at >= ? AND created_at <= ?',account_id, datainicial, datafinal)
         ordenar(saques, depositos, transferaccounts,account_id)
     end
