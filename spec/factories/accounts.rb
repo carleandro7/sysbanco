@@ -1,7 +1,7 @@
 FactoryBot.define do
     factory :account do 
         nome {Faker::Name.name}
-        email {"carleando7@gmail.com"}
+        email {Faker::Internet.email}
         telefone {Faker::PhoneNumber.cell_phone}
         cpf {Faker::PhoneNumber.cell_phone}
         password {"123456"}  
