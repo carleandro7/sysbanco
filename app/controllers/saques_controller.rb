@@ -28,7 +28,7 @@ class SaquesController < ApplicationController
       @saque.account_id = current_account.id
       respond_to do |format|
         if @saque.save
-          format.html { redirect_to @saque, notice: 'Saque was successfully created.' }
+          format.html { redirect_to @saque }
           format.json { render :show, status: :created, location: @saque }
         else
           format.html { render :new }

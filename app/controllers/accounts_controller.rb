@@ -57,7 +57,7 @@ class AccountsController < ApplicationController
 
       respond_to do |format|
         if @account.save
-          format.html { redirect_to action: "menu", notice: 'Account was successfully created.' }
+          format.html { redirect_to action: "menu"}
         else
           format.html { render :new }
           format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -71,7 +71,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to action: "index", notice: 'Account was successfully updated.' }
+        format.html { redirect_to action: "index" }
        
       else
         format.html { render :edit }

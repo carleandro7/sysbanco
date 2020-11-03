@@ -32,7 +32,7 @@ class DepositosController < ApplicationController
       respond_to do |format|
         if @deposito.save
           session[:deposito_show_id] = @deposito.id
-          format.html { redirect_to @deposito, notice: 'Saque was successfully created.' }
+          format.html { redirect_to @deposito}
         else
           format.html { render :new }
           format.json { render json: @deposito.errors, status: :unprocessable_entity }
