@@ -20,7 +20,7 @@
   <div class="row">
       <div class="col-lg-7 form-group">   
           <%= form.label :valor,"Valor", :class => 'control-label' %>
-          <%= form.text_field :valor, :class => 'form-control dinheiro', id: :valo_saque %>
+          <input name="transfer[valor]" class="form-control " pattern="^\d*(\,\d{0,2})?$"  placeholder="0,00"/>
       </div>
   </div>
   
