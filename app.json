@@ -1,0 +1,14 @@
+{
+    "name": "testenobe",
+    "description": "",
+    "keywords": [
+        "dokku",
+        "rails",
+        ""
+    ],
+    "scripts": {
+        "dokku": {
+            "postdeploy": "bundle exec rake db:migrate db:seed"
+        }
+    }
+}
